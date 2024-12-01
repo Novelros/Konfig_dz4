@@ -1,0 +1,290 @@
+[
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 0
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 2
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 1
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 3
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 2
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 4
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 3
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 5
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 4
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 6
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 5
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 10
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 6
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 20
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 7
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 30
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 8
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 11
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 9
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 12
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 10
+    },
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 4,
+        "register": 10
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 11
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 0
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 6
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 0,
+        "reg_result": 6
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 0
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 1
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 7
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 1,
+        "reg_result": 7
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 1
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 2
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 8
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 2,
+        "reg_result": 8
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 2
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 3
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 9
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 3,
+        "reg_result": 9
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 3
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 4
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 10
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 4,
+        "reg_result": 10
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 4
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 5
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 11
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 2,
+        "reg_b": 5,
+        "reg_result": 11
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 5
+    }
+]

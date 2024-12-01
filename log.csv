@@ -1,0 +1,41 @@
+[
+    {
+        "command": "LOAD_CONST",
+        "opcode": 1,
+        "constant": 10,
+        "register": 0
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 100,
+        "register": 1
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 2,
+        "address": 200
+    },
+    {
+        "command": "GE_OP",
+        "opcode": 4,
+        "reg_a": 0,
+        "reg_b": 1,
+        "reg_result": 2
+    },
+    {
+        "command": "ADD_OP",
+        "opcode": 5,
+        "reg_a": 0,
+        "reg_b": 2,
+        "reg_result": 3
+    },
+    {
+        "command": "SUB_OP",
+        "opcode": 6,
+        "reg_a": 3,
+        "reg_b": 1,
+        "reg_result": 4
+    }
+]
