@@ -14,10 +14,16 @@ COMMANDS = {
 
 
 def write_command(binary, opcode, *args):
+    """
+      Функция для записи команды в бинарный файл.
+    """
     binary.write(struct.pack("B", opcode) + b''.join(struct.pack("<I", arg) for arg in args))
 
 
 def assemble(input_path, output_path, log_path):
+    """
+       Основная функция ассемблера, которая обрабатывает файл с командами.
+    """
     try:
         with open(input_path, "r") as source, open(output_path, "wb") as binary, open(log_path, "w") as log:
             log_data = []
@@ -27,14 +33,14 @@ def assemble(input_path, output_path, log_path):
                 if not stripped_line or stripped_line.startswith('#'):
                     continue
 
-                parts = stripped_line.split()
+                parts = stripped_line.split()# Разделяем строку на части
                 cmd = parts[0]
                 try:
                     if cmd not in COMMANDS:
                         print(f"Ошибка: неизвестная команда {cmd} в строке: {line}")
                         continue
 
-                    opcode = COMMANDS[cmd]
+                    opcode = COMMANDS[cmd]# Получаем код операции
 
                     if cmd == "LOAD_CONST":
                         if len(parts) < 3:
@@ -43,6 +49,7 @@ def assemble(input_path, output_path, log_path):
                         const = int(parts[1])
                         reg = int(parts[2])
                         write_command(binary, opcode, const, reg)
+                        # Добавляем информацию в логи
                         log_data.append({"command": cmd, "opcode": opcode, "constant": const, "register": reg})
 
                     elif cmd == "LOAD_MEM":
@@ -63,7 +70,7 @@ def assemble(input_path, output_path, log_path):
                         write_command(binary, opcode, reg, addr)
                         log_data.append({"command": cmd, "opcode": opcode, "register": reg, "address": addr})
 
-                    elif cmd in {"GE_OP", "ADD_OP", "SUB_OP"}:
+                    elif cmd == "GE_OP":
                         if len(parts) < 4:
                             print(f"Ошибка: недостаточно аргументов для команды {cmd} в строке: {line}")
                             continue
