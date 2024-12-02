@@ -17,7 +17,9 @@ def write_command(binary, opcode, *args):
     """
       Функция для записи команды в бинарный файл.
     """
-    binary.write(struct.pack("B", opcode) + b''.join(struct.pack("<I", arg) for arg in args))
+    binary.write(struct.pack("B", opcode))  # Записываем опкод (1 байт)
+    for arg in args:
+        binary.write(struct.pack("<I", arg))  # Записываем каждый аргумент (4 байта)
 
 
 def assemble(input_path, output_path, log_path):

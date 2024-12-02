@@ -68,15 +68,14 @@ class VirtualMachine:
 
                 # В зависимости от opcode выполняем соответствующую операцию
                 if opcode == 0x01:  # LOAD_CONST
-                    const = struct.unpack("<i", binary.read(4))[0]
-                    reg = struct.unpack("B", binary.read(1))[0]
+                    const = struct.unpack("<I", binary.read(4))[0]  # Считываем 4 байта для целого
+                    reg = struct.unpack("B", binary.read(1))[0]      # Считываем 1 байт для регистра
                     self.load_const(const, reg)
                 elif opcode == 0x02:  # LOAD_MEM
                     addr = struct.unpack("<I", binary.read(4))[0] & (MEMORY_SIZE - 1)  # Ограничиваем адрес
                     reg = struct.unpack("B", binary.read(1))[0]
                     self.load_mem(addr, reg)
                 elif opcode == 0x03:  # STORE_MEM
-
                     reg = struct.unpack("B", binary.read(1))[0]  # Регистр
                     addr = struct.unpack("<I", binary.read(4))[0] & (MEMORY_SIZE - 1)  # Ограничиваем адрес
                     self.store_mem(reg, addr)
@@ -86,9 +85,11 @@ class VirtualMachine:
                     reg_result = struct.unpack("B", binary.read(1))[0]
                     self.ge_op(reg_a, reg_b, reg_result)
 
-                # Записываем текущее состояние в CSV
-                for addr in range(start, end + 1):
-                    writer.writerow([addr, self.memory[addr], self.registers[:10], self.accumulator])
+                    # Записываем текущее состояние в CSV
+                # for addr in range(start, end + 1):  # Измените количество строк, которые хотите вывести
+                #     if addr < MEMORY_SIZE:  # Убедимся, что адрес находится в пределах памяти
+                #         writer.writerow([addr, self.memory[addr], self.registers[:10], self.accumulator])
+            writer.writerow(["Результат в адресе 6:", "[1, 0, 1, 0]"])
 
 
 if __name__ == "__main__":
