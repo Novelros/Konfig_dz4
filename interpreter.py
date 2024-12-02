@@ -33,6 +33,7 @@ class VirtualMachine:
         self.validate_register(reg)
         self.accumulator = const
         self.registers[reg] = self.accumulator
+        print(f"Загружена константа {const} в регистр {reg}. Теперь регистры: {self.registers}")
 
     def load_mem(self, addr, reg):
         """Загружает данные из памяти в аккумулятор и сохраняет в регистр"""
@@ -69,7 +70,6 @@ class VirtualMachine:
         self.registers[reg_result] = self.registers[reg_a] - self.registers[reg_b]
 
     def execute(self, program_path, result_path, mem_range):
-        # Проверяем диапазон памяти
         start, end = map(int, mem_range.split(':'))
         self.validate_memory_range(start, end)
 
@@ -79,38 +79,43 @@ class VirtualMachine:
 
             while byte := binary.read(1):
                 opcode = struct.unpack("B", byte)[0]
+                print(f"Читаем байт: {opcode}")  # Отладочный вывод для opcodes
+
                 if opcode == 0x01:  # LOAD_CONST
-                    const = struct.unpack("<i", binary.read(4))[0]  # Константа
-                    reg = struct.unpack("<B", binary.read(1))[0]  # Регистр
+                    const = struct.unpack("<i", binary.read(4))[0]
+                    reg = struct.unpack("B", binary.read(1))[0]
                     self.load_const(const, reg)
                 elif opcode == 0x02:  # LOAD_MEM
-                    addr = struct.unpack("<I", binary.read(4))[0]  # Адрес памяти
-                    reg = struct.unpack("<B", binary.read(1))[0]  # Регистр
+                    addr = struct.unpack("<I", binary.read(4))[0] & (MEMORY_SIZE - 1)  # Ограничиваем адрес
+                    print(f"Загружаем из памяти по адресу: {addr}")  # Отладочный вывод для адресов
+                    self.validate_memory(addr)
+                    reg = struct.unpack("B", binary.read(1))[0]
                     self.load_mem(addr, reg)
                 elif opcode == 0x03:  # STORE_MEM
-                    reg = struct.unpack("<B", binary.read(1))[0]  # Регистр
-                    addr = struct.unpack("<I", binary.read(4))[0]  # Адрес памяти
+                    reg = struct.unpack("B", binary.read(1))[0]  # Регистр
+                    addr = struct.unpack("<I", binary.read(4))[0] & (MEMORY_SIZE - 1)  # Ограничиваем адрес
+                    print(f"Записываем значение из регистра {reg} по адресу: {addr}")  # Отладочный вывод
+                    self.validate_memory(addr)  # Проверяем адрес перед сохранением
                     self.store_mem(reg, addr)
                 elif opcode == 0x04:  # GE_OP
-                    reg_a = struct.unpack("<B", binary.read(1))[0]
-                    reg_b = struct.unpack("<B", binary.read(1))[0]
-                    reg_result = struct.unpack("<B", binary.read(1))[0]
+                    reg_a = struct.unpack("B", binary.read(1))[0]
+                    reg_b = struct.unpack("B", binary.read(1))[0]
+                    reg_result = struct.unpack("B", binary.read(1))[0]
                     self.ge_op(reg_a, reg_b, reg_result)
                 elif opcode == 0x05:  # ADD_OP
-                    reg_a = struct.unpack("<B", binary.read(1))[0]
-                    reg_b = struct.unpack("<B", binary.read(1))[0]
-                    reg_result = struct.unpack("<B", binary.read(1))[0]
+                    reg_a = struct.unpack("B", binary.read(1))[0]
+                    reg_b = struct.unpack("B", binary.read(1))[0]
+                    reg_result = struct.unpack("B", binary.read(1))[0]
                     self.add_op(reg_a, reg_b, reg_result)
                 elif opcode == 0x06:  # SUB_OP
-                    reg_a = struct.unpack("<B", binary.read(1))[0]
-                    reg_b = struct.unpack("<B", binary.read(1))[0]
-                    reg_result = struct.unpack("<B", binary.read(1))[0]
+                    reg_a = struct.unpack("B", binary.read(1))[0]
+                    reg_b = struct.unpack("B", binary.read(1))[0]
+                    reg_result = struct.unpack("B", binary.read(1))[0]
                     self.sub_op(reg_a, reg_b, reg_result)
 
-                # Записываем обновленное состояние
+                # Записываем обновленное состояние в CSV файл
                 for addr in range(start, end + 1):
                     writer.writerow([addr, self.memory[addr], self.registers[:10], self.accumulator])
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Interpreter for virtual machine")
@@ -121,4 +126,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     vm = VirtualMachine()
-    vm.execute(args.input, args.output, args.range)
+
+    try:
+        vm.execute(args.input, args.output, args.range)
+    except (IndexError, ValueError) as e:
+        print(f"Ошибка выполнения: {e}")

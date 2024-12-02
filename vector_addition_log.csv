@@ -33,7 +33,7 @@
         "command": "LOAD_CONST",
         "opcode": 1,
         "constant": 4,
-        "register": 4
+        "register": 3
     },
     {
         "command": "STORE_MEM",
