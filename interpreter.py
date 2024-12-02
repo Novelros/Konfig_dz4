@@ -76,6 +76,7 @@ class VirtualMachine:
                     reg = struct.unpack("B", binary.read(1))[0]
                     self.load_mem(addr, reg)
                 elif opcode == 0x03:  # STORE_MEM
+
                     reg = struct.unpack("B", binary.read(1))[0]  # Регистр
                     addr = struct.unpack("<I", binary.read(4))[0] & (MEMORY_SIZE - 1)  # Ограничиваем адрес
                     self.store_mem(reg, addr)
