@@ -1,41 +1,102 @@
 [
     {
-        "command": "LOAD_CONST",
-        "opcode": 1,
-        "constant": 10,
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
         "register": 0
     },
     {
         "command": "LOAD_MEM",
         "opcode": 2,
-        "address": 100,
-        "register": 1
-    },
-    {
-        "command": "STORE_MEM",
-        "opcode": 3,
-        "register": 2,
-        "address": 200
+        "address": 3,
+        "register": 6
     },
     {
         "command": "GE_OP",
         "opcode": 4,
-        "reg_a": 0,
-        "reg_b": 1,
-        "reg_result": 2
+        "reg_a": 2,
+        "reg_b": 0,
+        "reg_result": 6
     },
     {
-        "command": "ADD_OP",
-        "opcode": 5,
-        "reg_a": 0,
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 0
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 1
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 7
+    },
+    {
+        "command": "GE_OP",
+        "opcode": 4,
+        "reg_a": 2,
+        "reg_b": 1,
+        "reg_result": 7
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 1
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 2
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 8
+    },
+    {
+        "command": "GE_OP",
+        "opcode": 4,
+        "reg_a": 2,
         "reg_b": 2,
-        "reg_result": 3
+        "reg_result": 8
     },
     {
-        "command": "SUB_OP",
-        "opcode": 6,
-        "reg_a": 3,
-        "reg_b": 1,
-        "reg_result": 4
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 2
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 3
+    },
+    {
+        "command": "LOAD_MEM",
+        "opcode": 2,
+        "address": 3,
+        "register": 9
+    },
+    {
+        "command": "GE_OP",
+        "opcode": 4,
+        "reg_a": 2,
+        "reg_b": 3,
+        "reg_result": 9
+    },
+    {
+        "command": "STORE_MEM",
+        "opcode": 3,
+        "register": 6,
+        "address": 3
     }
 ]

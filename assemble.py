@@ -5,12 +5,11 @@ import argparse
 
 # Описание команд
 COMMANDS = {
-    "LOAD_CONST": 0x01,
-    "LOAD_MEM": 0x02,
-    "STORE_MEM": 0x03,
-    "GE_OP": 0x04,
-    "ADD_OP": 0x05,
-    "SUB_OP": 0x06,
+    #Все эти числа представлены в шестнадцатеричном формате (обозначается префиксом 0x).
+    "LOAD_CONST": 0x01,  # Загружает константу в регистр.
+    "LOAD_MEM": 0x02,    # Загружает значение из памяти в регистр.
+    "STORE_MEM": 0x03,   # Сохраняет значение из регистра в память.
+    "GE_OP": 0x04,       # Операция сравнения: больше или равно (>=).
 }
 
 
@@ -79,6 +78,7 @@ def assemble(input_path, output_path, log_path):
                             "reg_b": reg_b,
                             "reg_result": reg_result
                         })
+
 
                 except ValueError as e:
                     print(f"Ошибка при обработке строки: {line}. {str(e)}")
