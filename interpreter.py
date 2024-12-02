@@ -54,20 +54,6 @@ class VirtualMachine:
         self.validate_register(reg_result)
         self.registers[reg_result] = 1 if self.registers[reg_a] >= self.registers[reg_b] else 0
 
-    def add_op(self, reg_a, reg_b, reg_result):
-        """Операция сложения"""
-        self.validate_register(reg_a)
-        self.validate_register(reg_b)
-        self.validate_register(reg_result)
-        self.registers[reg_result] = self.registers[reg_a] + self.registers[reg_b]
-
-    def sub_op(self, reg_a, reg_b, reg_result):
-        """Операция вычитания"""
-        self.validate_register(reg_a)
-        self.validate_register(reg_b)
-        self.validate_register(reg_result)
-        self.registers[reg_result] = self.registers[reg_a] - self.registers[reg_b]
-
     def execute(self, program_path, result_path, mem_range):
         start, end = map(int, mem_range.split(":"))
         self.validate_memory_range(start, end)
